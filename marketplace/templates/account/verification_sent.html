@@ -1,0 +1,27 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'auth/auth.css' %}">
+{% endblock %}
+
+
+{% block content %}
+	<section class="content bg-wheat">
+		<div class="container">
+			<form class="login shadow-sm">
+				{% csrf_token %}
+				<div class="title">
+					<h2 class="text-center">Էլ․հասցեի հաստատում</h2>
+				</div>
+				<div class="text-center" style="margin: 60px 0 80px 0;">
+				  Մենք ձեր էլ․հասցեին նամակ ենք ուղարկել ստուգման համար: Գրանցման գործընթացը ավարտելու համար հետևեք տրված հղմանը: Եթե դուք չեք ստացել հաստատման նամակը, ապա ստուգեք ձեր սպամի էջը: Խնդրում ենք կապնվել մեզ հետ, եթե մի քանի րոպեի ընթացքում չստանաք հաստատման նամակը։
+				</div>
+				<div class="mt-4">
+					<a href="{% url 'account_login' %}" class="back" style="float: unset;">Հետ</a>
+				</div>
+			</form>
+		</div>
+	</section>
+{% endblock %}

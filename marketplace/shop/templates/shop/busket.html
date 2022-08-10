@@ -1,0 +1,94 @@
+{% extends 'layouts/base.html' %}
+{% load counts %}
+{% load static %}
+
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'shop/css/busket.css' %}">
+{% endblock %}
+
+
+{% block content %}
+	<section class="content bg-wheat">
+		<div class="container">
+			<div class="products shadow-sm">	
+				<table class="table" style="vertical-align: middle;">
+				  <thead>
+				    <tr class="text-center">
+				      <th scope="col">Նկար</th>
+				      <th scope="col">Անվանում</th>
+				      <th scope="col">Գին</th>
+				      <th scope="col">Քանակ</th>
+				      <th scope="col">Ընդհանուր</th>
+				      <th scope="col">-</th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				  	<form method="GET" class="wt-form" action="{% url 'checkout' %}">
+				    <input type="text" value="checkout" name="action" hidden>
+				  	{% for id in range %}
+				  	{% get_elem_by_id barcodes id as prId %}
+				  	{% get_by_barcode_in_query products prId as product %}
+
+				  	{% if product %}
+				    <tr id="del{{forloop.counter}}">
+				    	<td style="display: none;"><input class="max-count" id="{{product.id}}" value="{{product.balance}}" hidden disabled></td>
+				    	<td style="display: none;"><input class="prod-id" value="{{product.barcode}}" name="barcode" hidden></td>
+					    <td><img src="{{product.get_img_url}}"></td>
+					    <td>{{product.item_name}}</td>
+					    <td>
+					    	<span class="productStartPrice" id="{{forloop.counter}}">
+					    		{{product.price}}
+							</span> դր
+							{% if product.barcode < 100000 %}
+					    		/ 1 կգ
+							{% endif %}
+						</td>
+					    <td>
+					      	<div class="d-flex count">
+					      		<button type="button" class="math"><i class="fi fi-rr-minus-small"></i></button>
+					    		{% if product.barcode < 100000 %}
+					      		<input type="text" 
+	                                value="{% get_elem_by_id counts forloop.counter0 %}" id="{{forloop.counter}}" 
+	                                class="price-{{forloop.counter}} kg"
+	                                name="count" />
+					    		{% else %}
+						    	<input type="text" 
+		                                value="{% get_elem_by_id counts forloop.counter0 %}" id="{{forloop.counter}}" 
+		                                class="price-{{forloop.counter}}"
+		                                name="count" />
+					    		{% endif %}
+					      		<button type="button" class="math" id="{{product.id}}"><i class="fi fi-rr-plus-small"></i></button>
+					      	</div>
+					    </td>
+					    <td>
+					    	<span class="productPrice" id="productPrice-{{forloop.counter}}"></span> դր
+						</td>
+					    <td><button class="trash" id="{{forloop.counter}}" value="{{product.barcode}}"><i class="fi fi-rr-trash"></i></button></td>
+				    </tr>
+				    {% endif %}
+				    {% endfor %}
+				    <tr class="calculate">
+					    <td></td>
+					    <td></td>
+					    <td></td>
+					    <td></td>
+					    <td class="total-price"><span>8000</span> դր</td>
+					    <td><button class="chackout" type="submit">Վճարել</button></td>
+				    </tr>
+				    </form>
+				  </tbody>
+				</table>
+			</div>
+		</div>
+	</section>
+{% endblock %}
+
+
+{% block js %}
+<script>
+    var csrftoken = '{{ csrf_token }}';
+</script>
+
+<script type="text/javascript" src="{% static 'shop/js/busketCard.js' %}"></script>
+{% endblock %}

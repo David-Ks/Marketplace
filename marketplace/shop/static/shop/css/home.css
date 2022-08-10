@@ -1,0 +1,311 @@
+:root {
+	--green: #00CC00;
+	--orange: #ff7011;
+	--wheat: #f9f6f0;
+}
+
+.bg-wheat {
+	background: var(--wheat);
+}
+
+.main {
+	height: 400px;
+	position: relative;
+	top: 67.44px;
+	margin-bottom: 67.44px;
+}
+
+.main img {
+	position: fixed;
+	width: 100vw;
+	height: 400px;
+	object-fit: cover;
+	opacity: 0.2;
+	z-index: -1;
+	transform: scale(1.0);
+
+}
+
+.main .content {
+	position: relative;
+	max-height: 400px;
+	z-index: 2;
+	padding: 80px 0;
+	text-align: center;
+}
+
+.main .content h1 {
+	font-weight: bold;
+	text-align: center;
+	font-size: 5em;
+}
+
+.main .quote {
+    text-align: center;
+    width: 100%;
+    display: block;
+    padding-bottom: 40px;
+    font-size: 40px;
+}
+
+a.button {
+	background: var(--green);
+	text-decoration: none;
+	color: white;
+	padding: 15px 25px;
+	transition-duration: 0.3s;
+}
+
+.features {
+	padding: 70px 0;
+}
+
+.features .fe {
+	cursor: default;
+	padding: 20px;
+	width: 30%;
+	height: 100%;
+	box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+	background: white;
+}
+
+.features .fe span {
+	text-align: center;
+}
+
+.features .fe i {
+	transition-duration: 0.3s;
+	float: left;
+	font-size: 2em;
+	background: var(--green);
+	color: white;
+	border-radius: 10px;
+	padding: 10px;
+}
+
+.features .fe span {
+	transition-duration: 0.2s;
+	display: flex;
+	height: 68px;
+	justify-content: center;
+	align-items: center;
+}
+
+
+
+.products {
+	min-height: 60vh;
+	padding-bottom: 70px;
+}
+
+.products .content .title {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.products .content .title hr {
+	height: 10px;
+	border: 0;
+	background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgb(0, 255, 8), rgba(0, 0, 0, 0));
+	width: 60%;
+}
+
+.products .content .title a {
+	margin-left: auto;
+}
+
+.products .content .title span {
+	font-size: 25px;
+	font-weight: bold;
+	color: var(--orange);
+}
+
+@media only screen and (max-width: 1200px) {
+	.products .content .title hr {
+		width: 50%;
+	}
+
+	.features .fe span {
+		padding-left: 10px;
+	}
+}
+
+@media only screen and (max-width: 768px) {
+	.features .container .d-flex {
+		display: block !important;
+	}
+
+	.features .fe {
+		width: 100%;
+		margin: 10px 0;
+	}
+
+	.products .content .title hr {
+		width: 0%;
+	}
+}
+
+@media only screen and (max-width: 420px) {
+	.review .title {
+		font-size: 1.5rem !important;
+	}
+
+	div.review {
+		font-size: 0.9em;
+	}
+
+	.main .content h1 {
+		font-size: 3em;
+	}
+
+	.main .quote {
+		font-size: 20px;
+	}
+
+	.products .content .title a {
+		text-align: center;
+	}
+}
+
+@media only screen and (max-width: 340px) {
+	div.review {
+		padding: 15px 20px !important;
+	}
+}
+
+.products .slids {
+	padding-top: 40px;
+}
+
+button.math {
+	background: white;
+	border-radius: 0;
+	border: 1px solid grey;
+	transition-duration: 0.1s;
+}
+
+button.math i {
+	vertical-align: middle;
+}
+
+button.math:active {
+	box-shadow: 1px 1px 5px grey;
+}
+
+button.save {
+	position: absolute;
+	color: black;
+	background: white;
+	right: 15px;
+	border: none;
+	transition-duration: 0.2s;
+}
+
+button.save:active {
+	box-shadow: 1px 1px 5px grey;
+}
+
+button.buy-btn {
+	border-radius: 50%;
+	border: 3px solid var(--orange);
+	background: var(--orange);
+	color: white;
+	padding: 5px 10px;
+	margin-left: 10px;
+	transition-duration: 0.4s;
+}
+
+section.review {
+	min-height: 335px;
+	background: white;
+	padding: 20px 0;
+}
+
+div.review {
+	width: 100%;
+	padding: 40px 60px;
+	background: var(--wheat);
+	text-align: left;
+	min-height: 335px;
+}
+
+section.review div.title {
+	padding-bottom: 20px;
+	margin-bottom: 20px;
+	font-weight: bold;
+	text-align: center;
+	color: var(--green);
+	font-size: 30px;
+	border-bottom: 2px solid var(--green);
+}
+
+div.review .user {
+	font-weight: 500;
+	font-size: 1.1em;
+}
+
+span.rat {
+	background: var(--green);
+	color: white;
+	border-radius: 10px;
+	padding: 2px 6px;
+}
+
+.flex-center {
+	display: flex;
+	align-items: center;
+}
+
+div.flex-center i {
+	transform: rotate(10deg);
+	color: var(--orange);
+}
+
+
+@media (hover: hover){
+	button.buy-btn:hover {
+		background: white;
+		color: var(--green);
+		border: 3px solid var(--green);
+	}
+
+	button.save:hover {
+		background: var(--orange);
+		color: white;
+		transform: rotate(5deg);
+	}
+
+	button.math:hover {
+		background: var(--green);
+		color: white;
+		border: 1px solid var(--green);
+	}
+
+	.features .fe:hover i {
+		background: var(--orange);
+		transform: rotate(-5deg);
+	}
+
+	.features .fe:hover span {
+		color: var(--green);
+	}
+
+	a.button:hover {
+		color: white;
+		background: var(--orange);
+	}
+}
+
+
+.checkout {
+	padding-top: 20px;
+}
+
+.checkout .info {
+	background: white;
+	color: black;
+	padding: 40px;
+	width: 100%;
+	text-align: center;
+}

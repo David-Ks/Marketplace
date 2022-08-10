@@ -1,0 +1,174 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% load categories %}
+
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'shop/css/products.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'shop/css/card.css' %}">
+{% endblock %}
+
+
+{% block content %}
+<section class="products bg-wheat">
+	<div class="container">
+		<div class="unflex">
+            <!-- START FILTERS -->
+			<div class="filters col-md-3">
+				<span class="s-title shadow-sm">
+					<h1 class="text-center">Բաժիններ</h1>
+				</span>
+				<button class="btn filter-btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+					<i class="fi fi-rr-filter"></i>
+				</button>
+				<div class="collapse show" id="collapseExample">
+				  	<div class="collapse-body" style="border: none; padding: 0;">
+				  		<form class="filter price-filter shadow-sm mt-2" method="GET">
+				  			<span class="filter-title d-flex">
+				  				<span>Գին</span>
+				  				<a id="priceSearch" class="clear">Որոնում</a>
+				  			</span>
+				  			<hr>
+				  			<div style="width: 45%; float: right;">
+							  	<label for="max" class="form-label">Առավելագույնը</label>
+				  				<input 
+                                    type="number"
+                                    class="form-control"
+                                    id="max"/>
+							</div>
+							<div style="width: 45%;">
+							  	<label for="min" class="form-label">Նվազագույնը</label>
+				  				<input 
+                                    type="number"
+                                    class="form-control" 
+                                    id="min"/>
+							</div>
+				  		</form>
+				    	<form class="shadow-sm filter product-filter mt-2" method="GET">
+				    		<span class="filter-title d-flex">
+				    			<span>Կատեգորիաներ</span>
+				    			<a href="{% url 'products' %}" class="clear">Մաքրել բոլորը</a>
+				    		</span>
+				    		<hr>
+				    		{% get_categories as categories %}
+            				{% for cat in categories %}
+				    		<div class="form-check">
+							  	<input 
+							  		class="form-check-input cat-input"
+							  		type="checkbox" 
+							  		value="{{cat.id}}" 
+							  		name="cats" 
+							  		id="{{cat.id}}checkbox"
+							  		onChange="this.form.submit()">
+							  	<label class="form-check-label" for="{{cat.id}}checkbox">
+							    	{{cat.title}}
+							  	</label>
+							</div>
+							{% endfor %}
+				    	</form>
+				 	</div>
+				</div>
+			</div>
+            <!-- END FILTERS -->
+
+            <!-- START PRODUCTS -->
+			<div class="cards-box col mb-3">
+				<div class="cards">
+					{% for product in page_obj %}
+					<input class="max-count" id="{{product.id}}" value="{{product.balance}}" hidden>
+					<div class="card shadow-sm">
+                        <img src="{{product.get_img_url}}">
+	                    {% if product.barcode in saves %}
+	                        <button class="save SAVED" id="{{product.barcode}}"><i class="fi fi-rr-heart"></i></button>
+	                    {% else %}
+	                        <button class="save" id="{{product.barcode}}"><i class="fi fi-rr-heart"></i></button>
+	                    {% endif %}
+
+                        <span class="title mt-1">{{product.item_name}}</span>
+	                    {% if product.barcode < 100000 %}
+                        <span class="price">1 կգ / {{product.price}} դր</span>
+                        <div class="price">
+                            <div class="count">
+                                <button class="math"><i class="fi fi-rr-minus-small"></i></button>
+                                <input 
+                                    type="text" 
+                                    oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1').replace(/^0[^.]/, '0');" 
+                                    class="count-input kg"
+                                    id="c{{product.id}}" 
+                                    value="0.25" />
+                                <button class="math" id="{{product.id}}"><i class="fi fi-rr-plus-small"></i></button>
+                            </div>
+                            <button class="buy-btn" id="{{product.id}}" value="{{product.barcode}}"><i class="fi fi-rr-shopping-cart-add"></i></button>
+                        </div>
+                        {% else %}
+                        <span class="price">{{product.price}} դր</span>
+                        <div class="price">
+                            <div class="count">
+                                <button class="math"><i class="fi fi-rr-minus-small"></i></button>
+                                <input 
+                                    type="text" 
+                                    oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1').replace(/^0[^.]/, '0');" 
+                                    class="count-input"
+                                    id="c{{product.id}}" 
+                                    value="1" />
+                                <button class="math" id="{{product.id}}"><i class="fi fi-rr-plus-small"></i></button>
+                            </div>
+                            <button class="buy-btn" id="{{product.id}}" value="{{product.barcode}}"><i class="fi fi-rr-shopping-cart-add"></i></button>
+                        </div>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+				</div>
+
+				<!-- START PAGINATION -->
+				<nav style="background: var(--wheat) !important; box-shadow: none; padding: 30px 0 0 0;">
+				  <ul class="pagination" style="justify-content: center;">
+				    <li class="page-item">
+				  	{% if page_obj.number > 2 %}
+				    	<a class="page-link" style="color: black;" id="1"><i class="fi fi-rr-angle-double-small-left"></i></a>
+				    {% else %}
+				    	<a class="page-link disabled"><i class="fi fi-rr-angle-double-small-left"></i></a>
+				    {% endif %}
+				    </li>
+				    <li class="page-item">
+				  		{% if page_obj.has_previous %}
+				    		<a class="page-link" style="color: black;" id="{{page_obj.number|add:'-1'}}">{{page_obj.number|add:'-1'}}</a>
+				    	{% endif %}
+				    </li>
+				    <li class="page-item active">
+				      <span class="page-link" style="background: var(--green); border: var(--green);">
+				        {{page_obj.number}}
+				      </span>
+				    </li>
+				    <li class="page-item">
+				  		{% if page_obj.has_next %}
+				    		<a class="page-link" style="color: black;" id="{{page_obj.number|add:'1'}}">{{page_obj.number|add:'1'}}</a>
+				    	{% endif %}
+				    </li>
+				    <li class="page-item">
+				  		{% if page_obj.number|add:'2' <= page_obj.paginator.num_pages %}
+				    		<a class="page-link" style="color: black;" id="{{page_obj.paginator.num_pages}}"><i class="fi fi-rr-angle-double-small-right"></i></a>
+				    	{% else %}
+				    		<a class="page-link disabled"><i class="fi fi-rr-angle-double-small-right"></i></a>
+				    	{% endif %}
+				    </li>
+				  </ul>
+				</nav>
+				<!-- END PAGINATION -->
+			</div>
+            <!-- END PRODUCTS -->
+		</div>
+	</div>
+</section>
+{% endblock %}
+
+
+{% block js %}
+<script>
+    var csrftoken = '{{ csrf_token }}';
+</script>
+
+<script type="text/javascript" src="{% static 'shop/js/card.js' %}"></script>
+<script type="text/javascript" src="{% static 'shop/js/products.js' %}"></script>
+<script type="text/javascript" src="{% static 'shop/js/pagination.js' %}"></script>
+{% endblock %}

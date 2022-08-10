@@ -1,0 +1,84 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'user/css/delivery.css' %}">
+{% endblock %}
+
+
+{% block content %}
+<section class="panel bg-wheat">
+	<div class="container">
+		<div class="button-box d-flex shadow-sm">
+			<form method="POST" action="{% url 'delivery' %}">{% csrf_token %}
+				<input type="text" name="action" value="update_category" hidden>
+				<button class="btn btn-outline-danger" type="submit">
+				Թարմացնել կատեգորիաները
+				</button>
+			</form>
+			<form method="POST" action="{% url 'delivery' %}">{% csrf_token %}
+				<input type="text" name="action" value="update_products" hidden>
+				<button class="btn btn-outline-danger" type="submit">
+				Թարմացնել ապրանքները
+				</button>
+			</form>
+			<form method="POST" action="{% url 'delivery' %}" style="margin-left: auto;">{% csrf_token %}
+				<input type="text" name="action" value="delete_products" hidden>
+				<button class="btn btn-outline-danger" type="submit">
+				Ջնջել բոլոր ապրանքները
+				</button>
+			</form>
+		</div>
+		<div class="checkouts d-flex bg-wheat">
+			{% for checkout in checkouts %}
+			<div class="box">
+				<p>Վճարման համար՝ {{checkout.id}}</p>
+				<p>Ստացողի հեռ․համար՝ {{checkout.phone}}</p>
+				<p>Գրանցողի հեռ․համար՝{{checkout.user.phone}}</p>
+				<p>Ընդամենը՝ {{checkout.total}} (դր)</p>
+				<p>Փողոց՝ {{checkout.street}}</p>
+				<p>Շենք՝ {{checkout.building}}</p>
+				<p>Հարգ՝ {{checkout.floor}}</p>
+				<p>Բնակարան՝ {{checkout.apartment}}</p>
+				<p>Ակտիվ է՝ {{checkout.created_at}}</p>
+				<hr>
+				{% for item in checkout.items.all %}
+				<p class="item"><span class="count">{{item.count}}</span> | {{item.barcode}} | {{item.product.barcode}}</p>
+				<hr>
+				{% endfor %}
+				<form method="POST" action="{% url 'delivery' %}">
+				{% csrf_token %}
+				<input type="text" name="id" value="{{checkout.id}}" hidden>
+				<select class="form-select" name="status" aria-label="Default select example">
+					{% if checkout.status == '1' %}
+					<option selected>Պատրաստվում է</option>
+					{% elif checkout.status == '2' %}
+					<option selected>Ստուգվում է</option>
+					{% elif checkout.status == '3' %}
+					<option selected>Ճանապարհին է</option>
+					{% elif checkout.status == '0' %}
+					<option selected>Սխալ է գտնվել</option>
+					{% endif %}
+
+					{% if checkout.status != '1' %}<option value="1">Պատրաստվում է</option>{% endif %}
+					{% if checkout.status != '2' %}<option value="2">Ստուգվում է</option>{% endif %}
+					{% if checkout.status != '3' %}<option value="3">Ճանապարհին է</option>{% endif %}
+					{% if checkout.status != '4' %}<option value="4">Կատարված է</option>{% endif %}
+					{% if checkout.status != '0' %}<option value="0">Սխալ է գտնվել</option>{% endif %}
+				</select>
+				<p class="text-center">
+					<button class="mt-3 btn btn-outline-danger" type="submit">Պահպանել</button>
+				</p>
+				</form>
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+</section>
+{% endblock %}
+
+
+{% block js %}
+<script type="text/javascript" src="{% static 'user/js/delivery.js' %}"></script>
+{% endblock %}

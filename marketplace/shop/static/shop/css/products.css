@@ -1,0 +1,159 @@
+section.products {
+	min-height: 100vh;
+	padding-top: 85px;
+}
+
+div.filters {
+	margin-right: 10px;
+}
+
+button.filter-btn {
+	display: none;
+}
+
+a.clear {
+	cursor: pointer;
+	margin-left: auto;
+	color: var(--orange);
+	font-size: 16px;
+	margin: auto 0 auto auto;
+	transition-duration: 0.4s;
+	text-decoration: none;
+}
+
+
+.unflex {
+	display: flex;
+}
+
+span.s-title {
+	background: white;
+	padding: 20px 0px;
+	display: block;
+	border-radius: 5px;
+}
+
+form.filter {
+	padding: 1em;
+	background: white;
+}
+
+form.filter span.filter-title {
+	font-size: 1.2em;
+	font-weight: 500;
+	display: block;
+}
+
+
+div.cards {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: left;
+}
+
+.form-check-input:checked {
+    background-color: var(--green) !important;
+    border-color: var(--green) !important;
+}
+
+@media only screen and (max-width: 1400px) {
+	a.clear {
+		text-align: right !important;
+	}
+}
+
+@media only screen and (max-width: 1200px) {
+	.filter-title span {
+		font-size: 15px;
+	}
+
+	.price-filter label {
+		font-size: 12px;
+	}
+
+	span.filter-title {
+		align-items: center;
+	}
+
+	.s-title h1 {
+		font-size: 2em;
+	}
+}
+
+@media only screen and (max-width: 1000px) {
+	.s-title h1 {
+		font-size: 1.5em;
+	}
+
+	.price-filter label {
+		font-size: 8px;
+	}
+
+	a.clear {
+		font-size: 10px;
+	}
+
+	.filter-title span {
+		font-size: 10px;
+	}
+
+	form label {
+		font-size: 10px;
+	}
+}
+
+@media only screen and (max-width: 768px) {
+	button.filter-btn {
+		display: block;
+		width: 100%;
+		background: var(--green);
+		color: white;
+		border: 2px solid var(--green);
+		margin: 15px 0 15px 0;
+	}
+
+	button.filter-btn:active {
+		background: var(--orange);
+		border: 2px solid var(--orange);
+		color: white;
+	}
+
+	.unflex {
+		display: block !important;
+	}
+
+	div.filters {
+		margin-right: unset;
+	}
+
+	form.product-filter {
+		margin-bottom: 10px;
+	}
+
+	button.filter-btn {
+	    position: absolute;
+	    width: 50px;
+	    height: 50px;
+	    top: -3px;
+	    right: 10px;
+	}
+
+	section.products {
+		padding-bottom: 30px;
+	}
+
+	div.filters {
+		position: relative;
+	}
+
+	span.s-title {
+		margin-bottom: 5px;
+	}
+}
+
+
+@media (hover: hover){
+	a.clear:hover {
+		color: var(--green);
+	}
+}

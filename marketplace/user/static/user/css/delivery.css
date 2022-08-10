@@ -1,0 +1,48 @@
+section.panel {
+	padding: 30px 0;
+	margin-top: 67.44px;
+}
+
+div.button-box {
+	margin-bottom: 30px;
+	background: white;
+	padding: 25px;
+}
+
+div.button-box button {
+	margin: 5px;
+}
+
+div.checkouts {	
+	flex-wrap: wrap;
+	align-items: flex-start;
+}
+
+div.checkouts .box {
+	background: white;
+	padding: 30px;
+	margin: 5px;
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+	transition-duration: 1s;
+}
+
+div.checkouts .box p {
+	margin: unset !important;
+}
+
+
+span.count {
+	border-radius: 5px;
+	background: var(--green);
+	padding: 5px 10px;
+	margin-top: 5px;
+	color: white;
+	line-height: 2;
+}
+
+@media (hover: hover){
+	div.checkouts .box:hover {
+		box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+		transform: translateY(-5px);
+	}
+}

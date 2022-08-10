@@ -1,0 +1,26 @@
+section.content {
+	margin-top: 67.44px;
+	min-height: 60vh;
+	padding: 30px;
+}
+
+div.title {
+	padding: 20px 20px;
+	border-radius: 5px;
+	background: white;
+	margin-bottom: 10px;
+}
+
+div.title span {
+	display: block;
+	font-size: 30px;
+	text-align: left;
+	font-weight: 500;
+	color: var(--green);
+	border-bottom: 2px solid var(--green);
+}
+
+div.cards {
+	display: flex;
+	flex-wrap: wrap;
+}

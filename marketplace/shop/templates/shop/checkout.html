@@ -1,0 +1,168 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% load counts %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'shop/css/checkout.css' %}">
+{% endblock %}
+
+
+{% block content %}
+<section class="checkout">
+    <div class="container">
+        <form method="POST" action="{% url 'checkout' %}" autocomplete="on">
+        {% csrf_token %}
+        <main class="shadow-sm">
+            <div class="text-center">
+                <h2 class="title">Վճարման տվյալներ</h2>
+                <p class="lead">
+                    10000 դրամից ավել գնումների դեպքում առաքումն անվճար է։<br>
+                    Վճարումից հետո ապրանքները կամ վճարված գումարը հետ չեն վերադարձվում:
+                </p>
+            </div>
+
+            <div class="row g-5">
+                <div class="col-md-5 col-lg-4 order-md-last">
+                    <h4 class="d-flex justify-content-between align-items-center mb-3">
+                        <span style="color: var(--green)">Ձեր զամբյուղը</span>
+                        <span class="badge rounded-pill" style="background: var(--green);">{{ counts|length }}</span>
+                    </h4>
+                    <ul class="list-group mb-3">
+                        {% for id in range %}
+                        {% get_elem_by_id barcodes id as prBarcode %}
+                        {% get_by_barcode_in_query products prBarcode as product %}
+                        <input type="text" name="barcode" value="{{product.barcode}}" hidden>
+
+                        <li class="list-group-item d-flex justify-content-between lh-sm">
+                            <div>
+                                <h6 class="my-0" style="width: 190px;">{{product.item_name}}</h6>
+                            </div>
+                            <span class="text-muted" id="price">
+                                <span class="price-view">{{product.price}}</span> (դր)
+                                {% get_elem_by_id counts forloop.counter0 as cnt %}
+                                <span class="count-view">{{cnt}}</span>
+                                <input type="text" name="count" value="{{cnt}}" hidden>
+                            </span>
+                        </li>
+                        {% endfor %}
+                        <li class="list-group-item d-flex delivery" style="display: block;">
+                            <div style="margin-right: auto;">
+                                <span class="my-0">Առաքում</span>
+                            </div>
+                            <span class="text-muted">
+                                <span class="price-view">500</span> (դր)
+                                <input type="text" value="1" disabled hidden>
+                            </span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <span style="margin-right: auto;">Ընդհանուր</span>
+                            <strong id="total"></strong>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-md-7 col-lg-8">
+                    <h4 class="title mb-3">Առաքում</h4>
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <label for="phone" class="form-label">Ստացողի Հեռ․համար*</label>
+                            <div class="input-group has-validation">
+                                <span class="input-group-text phone">+374</span>
+                                <input type="tel" class="form-control" name="phone" id="phone" placeholder="99123456" required>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <label for="street" class="form-label">Փողոց*</label>
+                            <input type="text" class="form-control" id="street" placeholder="Վարդանանց 24"
+                                   name="street" required>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <label for="building" class="form-label">Շենք*</label>
+                            <input type="text" name="building" class="form-control" id="building" value="" required>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <label for="floor" class="form-label">Հարկ</label>
+                            <input type="text" class="form-control" name="floor" id="floor" value="">
+                        </div>
+
+                        <div class="col-sm-6">
+                            <label for="apartment" class="form-label">Բնակարան</label>
+                            <input type="text" class="form-control" name="apartment" id="apartment" value="">
+                        </div>
+
+                        <div class="col-sm-12">
+                            <label for="other" class="form-label">Այլ նշումներ</label>
+                            <textarea class="form-control" id="other" name="other" rows="3"></textarea>
+                        </div>
+
+                        <div class="col-md-3">
+                            <label for="region" class="form-label">Մարզ/Շրջան</label>
+                            <select class="form-select" id="region" disabled>
+                                <option value="armenia">Լոռի</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-3">
+                            <label for="city" class="form-label">Քաղաք</label>
+                            <select class="form-select" id="city" disabled>
+                                <option value="vanadzor">Վանաձոր</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <hr class="my-4">
+
+                    <h4 class="title mb-3">Վճարում</h4>
+
+                    <div class="my-3">
+                        <div class="form-check">
+                            <input id="credit" name="paymentMethod" type="radio" class="form-check-input" checked=""
+                                   required="" disabled>
+                            <label class="form-check-label" for="credit">IDram</label>
+                        </div>
+                        <div class="form-check">
+                            <input id="debit" name="paymentMethod" type="radio" class="form-check-input"
+                                   required="" disabled>
+                            <label class="form-check-label" for="debit">ArCa / VisaCard / MasterCard</label>
+                        </div>
+                        <div class="form-check">
+                            <input id="paypal" name="paymentMethod" type="radio" class="form-check-input"
+                                   required="" disabled>
+                            <label class="form-check-label" for="paypal">Telcell</label>
+                        </div>
+                    </div>
+
+                    <div class="row gy-3">
+                        <div class="col-md-6">
+                            <label for="cc-name" class="form-label">Քարտի համար</label>
+                            <input type="text" name="card-number" class="form-control" id="cc-name" placeholder="" required=""disabled>
+                        </div>
+
+                        <div class="col-md-3">
+                            <label for="cc-expiration" class="form-label">Սեփականատեր</label>
+                            <input type="text" name="cc-expiration" class="form-control" id="cc-expiration" placeholder="" required="" disabled>
+                        </div>
+
+                        <div class="col-md-3">
+                            <label for="cc-cvv" class="form-label">Ուժի մեջ է մինչև</label>
+                            <input type="text" name="cc-cvv" class="form-control" id="cc-cvv" placeholder="" required="" disabled>
+                        </div>
+                    </div>
+
+                    <hr class="my-4">
+                    <button class="w-100 checkout shadow-sm" type="submit">Շարունակել վճարումը</button>
+                </div>
+            </div>
+        </main>
+        </form>
+    </div>
+</section>
+{% endblock %}
+
+
+{% block js %}
+<script type="text/javascript" src="{% static 'shop/js/checkout.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,157 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'user/css/profile.css' %}">
+{% endblock %}
+
+
+{% block content %}
+	<section class="content bg-wheat">
+		<div class="container">
+			<div class="d-flex" style="min-height: 400px;">
+				<!-- USER PROFILE -->
+				<div class="profile shadow-sm">
+					<form method="POST" action="{% url 'profile' %}">
+						{% csrf_token %}
+						<span class="title">
+							Անձնական էջի կարգավորումներ
+						</span>
+						<div class="d-flex mb-2">
+							<label for="firstname">Անուն:</label>
+							<input class="form-control" type="text" name="first_name" id="firstname" placeholder="John" value="{{request.user.first_name}}">
+						</div>
+						<div class="d-flex mb-2">
+							<label for="lastname">Ազգանուն:</label>
+							<input class="form-control" type="text" name="last_name" id="lastname" placeholder="Smith" value="{{request.user.last_name}}">
+						</div>
+						<div class="d-flex mb-2">
+							<label for="phone">Հեռ․համար:</label>
+							<input class="form-control" type="tel" name="phone" id="phone" placeholder="99123456" value="{{request.user.phone}}">
+						</div>
+							<div class="d-flex mb-2">
+								<label for="email">Էլ․հասցե:</label>
+								<span id="email">{{request.user.email}}</span>
+							</div>
+						<div class="d-flex mt-4">	
+							<a href="">Փոխել գաղտնաբառը</a>
+							<button type="submit" class="prof-btn">Պահպանել</button>
+						</div>
+					</form>
+				</div>
+				<!-- END USER PROFILE -->
+
+				<!-- USER REVIEW -->
+				<div class="w-100" style="padding-bottom: 30px;">
+					<div class="box shadow-sm" style="position: relative;">
+						<form class="review" method="POST" action="{% url 'profile_new_review' %}">
+							{% csrf_token %}
+							<span class="title">
+								Ձեր կարծիքը
+							</span>
+							<div class="d-flex">
+								<div class="stars flex-center">
+									<i class="fi fi-rr-star rat" id="1"></i>
+									<i class="fi fi-rr-star rat" id="2"></i>
+									<i class="fi fi-rr-star rat" id="3"></i>
+									<i class="fi fi-rr-star rat" id="4"></i>
+									<i class="fi fi-rr-star rat" id="5"></i>
+								</div>
+								<input type="number" name="rate" id="cuurentRat" value="{{review.0.rate}}" hidden>
+								<button type="submit" class="prof-btn">Պահպանել</button>
+							</div>
+							<div class="textarea">
+								<textarea class="form-control" id="review" name="content" rows="7" placeholder="Your review">{{review.0.content}}</textarea>
+							</div>
+						</form>
+					</div>
+				</div>
+				<!-- END USER REVIEW -->
+			</div>
+			{% if request.user.is_superuser %}
+			<a href="{% url 'delivery' %}"><button class="btn btn-outline-danger">ԱԴՄԻՆի էջ</button></a>
+			{% endif %}
+		</div>
+	</section>
+
+	<section class="history bg-wheat">
+		<div class="container">
+			<div class="current shadow-sm">
+				<span class="title">
+					<span style="float: left;">Ակտիվ առաքոիմներ</span>
+					<button class="refresh" id="refresh"><i class="fi fi-rr-refresh"></i></button>
+				</span>
+				<table class="table">
+				<thead>
+					<tr>
+						<th scope="col">Առաքման կոդ</th>
+						<th scope="col">Հեռ․համար</th>
+						<th scope="col">Փողոց</th>
+						<th scope="col">Շենք</th>
+						<th scope="col">Վիճակ</th>
+					</tr>
+				</thead>
+				<tbody>
+				{% for checkout in checkouts %}
+				<input type="text" id="ids" value="{{checkout.id}}" hidden>
+				<tr>
+					<th scope="row">{{checkout.id}}</th>
+					<td>{{checkout.phone}}</td>
+					<td>{{checkout.street}}</td>
+					<td>{{checkout.building}}</td>
+					{% if checkout.status == '1' %}
+					<td id="for-status-{{forloop.counter0}}">Պատրաստվում է</td>
+					{% elif checkout.status == '2' %}
+					<td id="for-status-{{forloop.counter0}}">Ստուգվում է</td>
+					{% elif checkout.status == '3' %}
+					<td id="for-status-{{forloop.counter0}}">Ճանապարհին է</td>
+					{% elif checkout.status == '0' %}
+					<td id="for-status-{{forloop.counter0}}" style="color: red;">Սխալ է գտնվել</td>
+					{% endif %}
+				</tr>
+				{% endfor %}
+				</tbody>
+				</table>
+			</div>
+			<div class="others shadow-sm">
+				<span class="title" style="height: 41px">Առաքման պատմություն</span>
+				<table class="table">
+				<thead>
+					<tr>
+						<th scope="col">Առաքման կոդ</th>
+						<th scope="col">Հեռ․համար</th>
+						<th scope="col">Փողոց</th>
+						<th scope="col">Շենք</th>
+						<th scope="col">Վիճակ</th>
+					</tr>
+				</thead>
+				<tbody>
+				{% for checkout in others %}
+				<tr>
+					<th scope="row">{{checkout.id}}</th>
+					<td>{{checkout.phone}}</td>
+					<td>{{checkout.street}}</td>
+					<td>{{checkout.building}}</td>
+					<td>
+					{% if checkout.status == '4' %}
+					Կատարված է
+					{% endif %}
+					</td>
+				</tr>
+				{% endfor %}
+				</tbody>
+				</table>
+			</div>
+		</div>
+	</section>
+{% endblock %}
+
+
+{% block js %}
+<script>
+    var csrftoken = '{{ csrf_token }}';
+</script>
+
+<script type="text/javascript" src="{% static 'user/js/profile.js' %}"></script>
+{% endblock %}

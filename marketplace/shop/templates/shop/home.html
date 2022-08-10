@@ -1,0 +1,263 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'shop/css/home.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'shop/css/swiper.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'shop/css/card.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'other/swiper-bundle.min.css' %}">
+{% endblock %}
+
+
+{% block content %}
+    <section class="main">
+        <img src="{% static 'images/food.jpg' %}">
+        <div class="container">    
+            <div class="content">
+                <h1 class="text-center"><span class="color-orange">My</span>F<span class="color-green">oo</span>d</h1>
+                <span class="quote"><span class="color-orange">Թարմ</span> սնունդ, <span class="color-green">առողջ</span> մթնոլորտ</span>
+
+                <a href="{% url 'products' %}" class="button">Ապրանքատեսականի</a>
+            </div>
+        </div>
+    </section>
+
+    {% if checkout %}
+    <section class="checkout bg-wheat">
+        <div class="container">
+            <div class="info shadow-sm">
+                ({{checkout.id}}) Ձեր պատվերն ակտիվ է, խնդրում ենք սպասել: Կարգավիճակը՝  
+                {% if checkout.status == '1' %}
+                Պատրաստվում է
+                {% elif checkout.status == '2' %}
+                Ստուգվում է
+                {% elif checkout.status == '3' %}
+                Ճանապարհին է
+                {% elif checkout.status == '0' %}
+                Սխալ է գտնվել
+                {% endif %}
+                :<hr>
+                Լրացուցիչ տեղեկությունների համար խնդրում ենք զանգահարել 094913633 Հեռ․համարին։
+            </div>
+        </div>
+    </section>
+    {% endif %}
+
+    <section class="features bg-wheat">
+        <div class="container">
+            <div class="d-flex">
+                <div class="fe">
+                    <i class="fi fi-rr-clock-three"></i>
+                    <span>Արագ առաքում ամբողջ քաղաքով</span>
+                </div>
+                <div class="fe mc-auto">
+                    <i class="fi fi-rr-sack dollar"></i>
+                    <span>Ցածր գներ և մեծ զեղչեր</span>
+                </div>
+                <div class="fe">
+                    <i class="fi fi-rr-hamburger"></i>
+                    <span>Թարմ և մատչելի սնունդ</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FIRST PRODUCTS LIST -->
+    <section class="products bg-wheat">
+        <div class="container">
+            <div class="content">
+                <div class="title">
+                    <span>Ալկոհոլային Խմիչքներ</span>
+                    <hr class="mc-auto">
+                    <a class="button" href="{% url 'products' %}">Դիտել ավելին</a>
+                </div>
+                <div class="slids">
+                    <div class="swiper mySwiper">
+                        <div class="swiper-wrapper">
+                            {% for product in products1 %}
+                            <div class="swiper-slide">
+                                <div class="card shadow-sm" style="width:100% !important;">
+                                    <input class="max-count" id="{{product.id}}" value="{{product.balance}}" hidden>
+                                    <div class="test" style="background-image: url('{{product.get_img_url}}');"></div>
+                                    <!-- <img src="{{product.get_img_url}}"> -->
+                                    {% if product.barcode in saves %}
+                                        <button class="save SAVED" id="{{product.barcode}}"><i class="fi fi-rr-heart"></i></button>
+                                    {% else %}
+                                        <button class="save" id="{{product.barcode}}"><i class="fi fi-rr-heart"></i></button>
+                                    {% endif %}
+                                    <span class="title mt-1">{{product.item_name}}</span>
+                                    <span class="price">{{product.price}} դր</span>
+                                    <div class="price">
+                                        <div class="count">
+                                            <button class="math"><i class="fi fi-rr-minus-small"></i></button>
+                                            <input 
+                                                type="text" 
+                                                oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1').replace(/^0[^.]/, '0');" 
+                                                class="count-input"
+                                                id="c{{product.id}}" 
+                                                value="1" />
+                                            <button class="math" id="{{product.id}}"><i class="fi fi-rr-plus-small"></i></button>
+                                        </div>
+                                        <button class="buy-btn" id="{{product.id}}" value="{{product.barcode}}"><i class="fi fi-rr-shopping-cart-add"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <div class="swiper-button-prev" style="color: var(--orange);"></div>
+                        <div class="swiper-button-next" style="color: var(--orange);"></div>
+                    </div>            
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- END FIRST PRODUCTS LIST -->
+
+
+    <!-- SECOND PRODUCT LIST -->
+    <section class="products bg-wheat">
+        <div class="container"> 
+            <div class="content">
+                <div class="title">
+                    <span>Կաթնամթերք և հավկիթ</span>
+                    <hr class="mc-auto">
+                    <a class="button" href="{% url 'products' %}">Դիտել ավելին</a>
+                </div>
+                <div class="slids">
+                    <div class="swiper mySwiper1">
+                        <div class="swiper-wrapper">
+                            {% for product in products2 %}
+                            <div class="swiper-slide">
+                                <div class="card shadow-sm" style="width: 100% !important;">
+                                    <input class="max-count" id="{{product.id}}" value="{{product.balance}}" hidden>
+                                    <div class="test" style="background-image: url('{{product.get_img_url}}');"></div>
+                                    <!-- <img src="{{product.get_img_url}}"> -->
+                                    {% if product.barcode in saves %}
+                                        <button class="save SAVED" id="{{product.barcode}}"><i class="fi fi-rr-heart"></i></button>
+                                    {% else %}
+                                        <button class="save" id="{{product.barcode}}"><i class="fi fi-rr-heart"></i></button>
+                                    {% endif %}
+                                    <span class="title mt-1">{{product.item_name}}</span>
+                                    <span class="price">{{product.price}} դր</span>
+                                    <div class="price">
+                                        <div class="count">
+                                            <button class="math"><i class="fi fi-rr-minus-small"></i></button>
+                                            <input 
+                                                type="text" 
+                                                oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1').replace(/^0[^.]/, '0');" 
+                                                class="count-input"
+                                                id="c{{product.id}}" 
+                                                value="1" />
+                                            <button class="math" id="{{product.id}}"><i class="fi fi-rr-plus-small"></i></button>
+                                        </div>
+                                        <button class="buy-btn" id="{{product.id}}" value="{{product.barcode}}"><i class="fi fi-rr-shopping-cart-add"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <div class="swiper-button-prev" style="color: var(--orange);"></div>
+                        <div class="swiper-button-next" style="color: var(--orange);"></div>
+                    </div>            
+                </div>
+            </div>
+        </div> 
+    </section>
+    <!-- END SECOND PRODUCT LIST -->
+
+
+    {% if reviews %}
+    <section class="review bg-wheat">
+        <div class="container">
+            <div class="title">
+                Մեր հաճախորդների ակնարկները
+            </div>
+            <div class="swiper mySwiper2">
+              <div class="swiper-wrapper">
+                {% for review in reviews %}
+                <div class="swiper-slide">
+                    <div class="review shadow-sm">
+                        <div class="user">
+                            <span style="float: left; margin-right: 10px;">
+                                {{review.user.fullname}}
+                            </span>
+                            <input type="number" value="{{review.rate}}" id="stars" hidden> 
+                            <div class="flex-center ratingWithStars" id="{{forloop.counter0}}">
+                            </div>
+                        </div>
+                        <div class="text">{{review.content}}</div>
+                    </div>
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+        </div>
+    </section>
+    {% endif %}
+{% endblock %}
+
+
+{% block js %}
+<script>
+    var csrftoken = '{{ csrf_token }}';
+</script>
+
+<script type="text/javascript" src="{% static 'shop/js/card.js' %}"></script>
+<script src="{% static 'other/swiper-bundle.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'shop/js/home.js' %}"></script>
+
+<script>
+    let slidesPerViewForReview = 2;
+    let slidesPerViewForProduct = 4;
+    if(window.screen.width < 1000) {
+        slidesPerViewForReview = 1;
+    }
+    if(window.screen.width < 770) {
+        slidesPerViewForProduct = 2;
+    }
+    if(window.screen.width < 425) {
+        slidesPerViewForProduct = 1;
+    }
+    var swiper1 = new Swiper(".mySwiper", {
+        slidesPerView: slidesPerViewForProduct,
+        spaceBetween: 30,
+        loop: true,
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+        autoplay: {
+            delay: 2000,
+            disableOnInteraction: false,
+        },
+    });
+
+    var swiper2 = new Swiper(".mySwiper1", {
+        slidesPerView: slidesPerViewForProduct,
+        spaceBetween: 30,
+        loop: true,
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+        autoplay: {
+            delay: 2500,
+            disableOnInteraction: false,
+        },
+    });
+
+    var swiper3 = new Swiper(".mySwiper2", {
+        slidesPerView: slidesPerViewForReview,
+        spaceBetween: 30,
+        pagination: {
+          el: ".swiper-pagination",
+          dynamicBullets: true,
+        },
+        // autoplay: {
+        //     delay: 3000,
+        //     disableOnInteraction: false,
+        // },
+    });
+    </script>
+{% endblock %}

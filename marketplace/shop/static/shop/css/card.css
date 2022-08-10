@@ -1,0 +1,207 @@
+a.card-a {
+	color: black;
+	display: block;
+	text-decoration: none;
+	width: 20%;
+}
+
+.card {
+	height: 100% !important;
+	padding: 15px;
+	border-radius: 0;
+	transition-duration: 0.2s;
+	width: 25%;
+}
+
+.card img{
+	position: relative;
+	top: 0;
+	left: 0;
+	width: 100%;
+	min-height: 60%;
+	max-height: 60%;
+	object-fit: none !important;
+}
+
+.card div.test {
+	background-position: center;
+	background-size: unset;
+	height: 200px;
+}
+
+.card div.price {
+	margin: 0 auto;
+	display: flex;
+	align-items: center;
+}
+
+.card div.count {
+	font-size: 13px;
+}
+
+span.price {
+	display: block;
+	text-align: center;
+	margin-top: auto;
+}
+
+.card div.count input {
+	width: 40px;
+	text-align: center;
+	vertical-align: top;
+	pointer-events: none;
+}
+
+.card span.title {
+	width: 100%;
+	height: 90px;
+	margin: 0 auto;
+	font-size: 0.9em;
+	text-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+	text-align: center;
+	color: black;
+	display: block;
+}
+
+button.math {
+	background: white;
+	border-radius: 0;
+	border: 1px solid grey;
+	transition-duration: 0.1s;
+}
+
+button.math i {
+	vertical-align: middle;
+}
+
+button.math:active {
+	box-shadow: 1px 1px 5px grey;
+}
+
+button.save {
+	position: absolute;
+	color: black;
+    background-color: rgba(256, 256, 256, 0.6);
+	right: 15px;
+	border: none;
+	transition-duration: 0.2s;
+}
+
+button.save:active {
+	box-shadow: 1px 1px 5px grey;
+}
+
+button.buy-btn {
+	border-radius: 50%;
+	border: 3px solid var(--orange);
+	background: var(--orange);
+	color: white;
+	padding: 5px 10px;
+	margin-left: 10px;
+	transition-duration: 0.4s;
+}
+
+@media only screen and (max-width: 1400px) {
+	.card div.price {
+		display: block;
+		text-align: center;
+	}
+
+	a.card-a {
+		width: 25%;
+	}
+
+	.card span.title {
+		font-size: 0.8em;
+	}
+
+	.card div.price > * {
+		margin: 5px 0;
+	}
+}
+
+@media only screen and (max-width: 1000px) {
+	a.card-a {
+		width: 33%;
+	}
+
+	div.count {
+		font-size: 10px !important;
+	}
+}
+
+@media only screen and (max-width: 768px) {
+
+	.cards {
+		justify-content: center;
+	}
+
+	div.card-box {
+		margin-top: 10px;
+	}
+
+	.cards .card .title {
+		text-align: center;
+	}
+
+	.card {
+		width: 33% !important;
+	}
+}
+
+@media only screen and (max-width: 768px) {
+	a.card-a {
+		width: 50%;
+	}
+}
+
+@media only screen and (max-width: 768px) {
+	button.math {
+		width: 100%;
+		display: block;
+	}
+	input.count-input {
+		display: block;
+		width: 50px !important;
+	}
+	.card {
+		width: 33% !important;
+	}
+}
+
+@media only screen and (max-width: 360px) {
+	.card {
+		width: 50% !important;
+	}
+}
+
+
+@media (hover: hover){
+	a.card-a:hover {
+		color: black;
+	}
+
+	.card:hover {
+		box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+		padding: 10px;
+	}
+
+	button.math:hover {
+		background: var(--green);
+		color: white;
+		border: 1px solid var(--green);
+	}
+
+	button.save:hover {
+		background: var(--orange);
+		color: white;
+		transform: rotate(5deg);
+	}
+
+	button.buy-btn:hover {
+		background: white;
+		color: var(--green);
+		border: 3px solid var(--green);
+	}
+    
+}

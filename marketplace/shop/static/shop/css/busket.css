@@ -1,0 +1,142 @@
+section.content {
+	padding: 45px 0;
+	margin-top: 67.44px;
+	min-height: 50vh;
+}
+
+div.products {
+	background: white;
+	padding: 10px;
+}
+
+div.products img {
+	width: 100px;
+	height: 100px;
+	object-fit: scale-down;
+}
+
+div.count {
+	justify-content: center;
+}
+
+div.count input {
+	width: 50px;
+	text-align: center;
+	border: 1px solid black;
+	margin: 0 5px;
+	pointer-events: none;
+}
+
+div.count button {
+	background: white;
+	border: 1px solid black;
+}
+
+div.count button:active {
+	box-shadow: 0 0 5px var(--green);
+}
+
+button.trash {
+	background: red;
+	color: white;
+	border: 2px solid red;
+}
+
+button.trash:active {
+	box-shadow: 0 0 5px red;
+}
+
+
+
+
+tr.calculate {
+	border-top: 2px solid var(--orange);
+}
+
+.calculate button {
+    background: var(--green);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    transition-duration: 0.4s;
+}
+
+.calculate button:active {
+	background: var(--green);
+	color: white;
+}
+
+tr {
+	text-align: center;
+}
+
+td.total-price {
+	font-weight: 500;
+	font-size: 1.2em;
+} 
+
+
+
+@media only screen and (max-width: 768px) {
+	div.count {
+		flex-direction: column;
+	}
+
+	div.count input {
+		width: 100%;
+		margin: 0px 0px;
+	}
+
+	.calculate button {
+		padding: 10px 5px;
+	}
+
+	td.total-price {
+		font-size: 1em;
+	}
+
+	table.table {
+		font-size: 15px;
+	}
+
+	div.products img {
+		width: 50px;
+		height: 50px;
+	}
+
+	section.title {
+		padding: 25px 0;
+		height: 100px;
+	}
+}
+
+@media only screen and (max-width: 460px) {
+	table.table {
+		font-size: 10px;
+	}
+}
+
+@media only screen and (max-width: 460px) {
+	table.table {
+		font-size: 6px;
+	}
+}
+
+@media (hover: hover){
+	.calculate button:hover {
+		background: var(--orange);
+	}
+
+	button.trash:hover {
+		transform: rotate(10deg);
+		background: white;
+		color: red;
+		border: 2px solid white;
+	}
+
+	div.count button:hover {
+		background: var(--green);
+		color: white;
+		border: 1px solid var(--green);
+	}
+}

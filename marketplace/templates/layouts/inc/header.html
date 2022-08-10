@@ -1,0 +1,69 @@
+{% load categories %}
+{% load counts %}
+<nav class="navbar navbar-expand-lg fixed-top">
+  <div class="container">
+    <a class="navbar-brand logo" href="{% url 'home' %}"><span class="color-orange">My</span>F<span class="color-green">oo</span>d</a>
+
+    <!-- MOBILE COLLAPSE -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <!-- END MOBILE COLLAPSE -->
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mb-2 mb-lg-0 me-2">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle product-btn" id="navToggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fi fi-rr-menu-burger" style="vertical-align: middle; color: red;"></i>
+          </a>
+          <ul class="dropdown-menu" id="navToggle" aria-labelledby="navbarDropdown">
+            {% get_categories as categories %}
+            {% for cat in categories %}
+              <li><a class="dropdown-item" href="{% url 'products'  %}?cats={{cat.id}}">{{cat.title}}</a></li>
+            {% endfor %}
+          </ul>
+        </li>
+      </ul>
+
+      <!-- SEARCH INPUT -->
+      <form class="d-flex search" role="search" action="{% url 'products' %}" method="GET">
+        <input class="form-control me-2 nav-input" type="search" name="search" placeholder="Փնտրել" aria-label="Search">
+        <button class="btn" type="submit"><i class="fi fi-rr-search color-orange"></i></button>
+      </form>
+      <!-- END SEARCH INPUT -->
+
+      <!-- PROFILE -->
+      {% if user.is_authenticated %}
+        <div class="btn-group to-bg">
+          <a href="" class="product-btn product-btn-for-mobile" role="button" data-bs-toggle="dropdown" aria-expanded="false" id="authToggle">
+            <button class="btn big-size" type="submit">
+              <i class="fi fi-rr-user color-green"></i>
+            </button>
+          </a>
+          <ul class="dropdown-menu mt-2" aria-labelledby="navbarDropdown" style="left: -100%; top: 42px;" id="authToggle">
+            <li><a class="dropdown-item" href="{% url 'profile' %}">Անձնական էջ</a></li>
+            <li><a class="dropdown-item" href="{% url 'account_logout' %}">Ելք</a></li>
+          </ul>
+        </div>
+      {% else %}
+        <a href="{% url 'account_login' %}">
+          <button class="btn big-size" type="submit"><i class="fi fi-rr-user color-green"></i></button>
+        </a>
+      {% endif %}
+      <!-- END PROFILE -->
+
+      <a href="{% url 'busket' %}">
+        <button class="btn big-size d-flex" id="navCartBtn" style="align-items: center;" type="submit">
+          <i class="fi fi-rr-shopping-cart color-green"></i>
+          <div class="count" id="viewCartBtnCount">{% get_cart_count %}</div>
+        </button>
+      </a>
+      <a href="{% url 'saves' %}">
+        <button class="btn big-size d-flex" style="align-items: center;" type="submit">
+          <i class="fi fi-rr-heart color-green"></i>
+          <div class="count" id="viewSavesBtnCount">{% get_saved_cards %}</div>
+        </button>
+      </a>
+    </div>
+  </div>
+</nav>

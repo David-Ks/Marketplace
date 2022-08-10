@@ -1,0 +1,168 @@
+section.content {
+	margin-top: 67.44px;
+	padding: 30px 0 0 0;
+}
+
+div.profile {
+	background: white;
+	border-radius: 5px;
+	padding: 30px;
+	width: 100%;
+	margin-bottom: 30px;
+	position: relative;
+}
+
+div.profile label {
+	padding: 7px 2px;
+	font-weight: 500px;
+}
+
+span#email {
+	padding: 7px 2px;
+	margin-left: auto;
+	width: 70%;
+}
+
+span.title {
+	font-weight: 18px;
+	font-weight: 500;
+	margin-bottom: 20px;
+	display: block;
+	width: 100%;
+	border-bottom: 2px solid var(--green);
+	color: var(--green);
+}
+
+div.profile input {
+	width: 70%;
+	margin-left: auto;
+}
+
+button.prof-btn {
+	color: white;
+	background: var(--green);
+	padding: 10px 20px;
+	transition-duration: 0.2s;
+	border: none;
+	margin-left: auto;
+}
+
+button.prof-btn:active {
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+div.profile form div:last-child button {
+	display: block;
+}
+
+div.profile form div:last-child {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	padding-right: 60px;
+	padding-bottom: 30px;
+}
+
+div.profile form div:last-child a {
+	color: var(--orange);
+	padding: 6px;
+}
+
+div.textarea {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	padding-right: 60px;
+	padding-bottom: 30px;
+}
+
+
+.flex-center {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+
+div.box {
+	height: 100%;
+	margin-left: 20px;
+	margin-bottom: 20px;
+	background: white;
+	border-radius: 5px;
+}
+
+form.review {
+	padding: 30px 30px;
+}
+
+form.review textarea {
+	margin-top: 20px;
+}
+
+div.stars {
+	font-size: 1.3em;
+}
+
+div.stars i {
+	transition-duration: 0.5s;
+	cursor: pointer;
+}
+
+.yes {
+	color: var(--orange);
+	transform: rotate(30deg);
+}
+
+
+
+
+section.history {
+	padding-bottom: 30px;
+}
+
+div.current {
+	background: white;
+	padding: 30px;
+	margin-bottom: 30px;
+}
+
+div.others {
+	padding: 30px;
+	background: white;
+}
+
+button.refresh {
+	margin-left: auto;
+	display: block;
+	font-size: 20px;
+	background: white;
+	border: none;
+	color: var(--orange);
+	margin-bottom: 7px;
+	border-radius: 5px;
+}
+
+button.refresh:not(:active) {
+	animation: expand 2s;
+}
+
+@keyframes expand {
+ 	from {
+  		transform: rotate(0deg);
+  	}
+  	to {
+  		transform: rotate(360deg);
+  	}
+}
+
+@media (hover: hover){
+	div.profile form div:last-child a:hover {
+		color: var(--orange);
+	}
+
+	button.prof-btn:hover {
+		background: var(--orange);
+		color: white;
+	}
+}
