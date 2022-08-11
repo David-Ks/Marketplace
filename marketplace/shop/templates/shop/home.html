@@ -114,9 +114,55 @@
     </section>
     <!-- END FIRST PRODUCTS LIST -->
 
+    <!-- EMAIL MESSAGE -->
+    <section class="email">
+        <div class="container">
+            <div class="row">
+                <div class="content col-sm" style="margin: 3% 0;">
+                    <span class="title">
+                        Դիմե՛ք
+                    </span>
+                    <p class="mt-4 mb-4">
+                        Ունե՞ք առաջարկներ, կան հարցե՞ր, ապա կարող եք դիմել լրացնելով հետևյալ դաշտերը և մենք դզեզ կպատասխանենք ձեր էլ․հասցեին:
+                    </p>
+                </div>
+                <form class="col-sm" method="POST" action="{% url 'home' %}">
+                    {% csrf_token %}
+                    <input type="text" name="action" value="send_mail" hidden>
+                    <div class="undis">
+                        <div class="email-field">
+                            <label for="name" class="mb-2">Անուն</label><br>
+                            {% if user.is_authenticated %}
+                                <input type="text" value="{{user.fullname}}" name="name" id="name" required style="pointer-events: none;">
+                            {% else %}
+                                <input type="text" name="name" id="name" placeholder="Ինչպես ձեզ դիմել?">
+                            {% endif %}
+                        </div>
+                        <div class="email-field">  
+                            <label for="email" class="mb-2">Էլ․հասցե</label><br>
+                            {% if user.is_authenticated %}
+                                <input type="email" value="{{user.email}}" name="email" id="email" placeholder="example@gmail.com" required style="pointer-events: none;">
+                            {% else %}                          
+                                <input type="email" name="email" id="email" placeholder="example@gmail.com">
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="email-field mt-3 mb-3">
+                        <label for="message" class="mb-2">Հաղորդագրություն</label><br>
+                        <textarea id="message" name="msg" rows="3" placeholder="Ունե՞ք հարցեր" class="form-control" required></textarea>
+                    </div>
+                    <div class="text-end">
+                        <button class="msg-btn" type="submit">Դիմել</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    <!-- END EMAIL MESSAGE -->
+
 
     <!-- SECOND PRODUCT LIST -->
-    <section class="products bg-wheat">
+    <section class="products bg-wheat" style="padding-top: 70px;">
         <div class="container"> 
             <div class="content">
                 <div class="title">

@@ -1,20 +1,17 @@
-<footer class="shadow-sm">
+<footer>
 	<div class="container">
-		<div class="content d-flex">
-			<div class="box">
-				<h2 class="section">Ծառայություններ</h2>
-				<a href="">Մեր մասին</a>
-				<a href="">Առաքում</a>
-				<a href="">Վճարում</a>
-			</div>
-			<div class="box me">
-				<h2 class="section">Հարցեր</h2>
+		<div class="content row">
+			<div class="col-md-3 box">
+				<h2>Հարցեր</h2>
 				<a href="">Ինչպես կատարել վճարում</a>
+				<a href="">Վճարման տեսակները</a>
 				<a href="">Գումարի վերադարձ</a>
+				<a href="">Կանոնակարգ</a>
+				<a href="">Առաքում</a>
 				<a href="">Այլ․․․</a>
 			</div>
-			<div class="box">
-				<h2 class="section">Կապ</h2>
+			<div class="col-md-3 box">
+				<h2>Կապ</h2>
 				<span><i class="fi fi-rr-marker"></i> Վարդանանց 24</span>
 				<span><i class="fi fi-rr-phone-call"></i> +347(94)913-633</span>
 				<span><i class="fi fi-rr-at"></i> Example@gmail.com</span>
@@ -23,39 +20,13 @@
 					<a href=""><i class="fi fi-brands-instagram"></i></a>
 				</div>
 			</div>
-			<div class="box">
-				<form method="POST" action="{% url 'home' %}">
-					{% csrf_token %}
-					<input type="text" name="action" value="send_mail" hidden>
-					<div class="d-flex undis">
-						<div class="mb-2 me-2">
-							<label for="name" class="mb-2">Անուն</label><br>
-							{% if user.is_authenticated %}
-								<input type="text" value="{{user.fullname}}" name="name" id="name" required style="pointer-events: none;">
-							{% else %}
-								<input type="text" name="name" id="name" placeholder="Ինչպես ձեզ դիմել?">
-							{% endif %}
-						</div>
-						<div class="mb-2">	
-							<label for="email" class="mb-2">Էլ․հասցե</label><br>
-							{% if user.is_authenticated %}
-								<input type="email" value="{{user.email}}" name="email" id="email" placeholder="example@gmail.com" required style="pointer-events: none;">
-							{% else %}							
-								<input type="email" name="email" id="email" placeholder="example@gmail.com">
-							{% endif %}
-						</div>
-					</div>
-					<div class="mt-2">
-						<label for="message" class="mb-2">Հաղորդագրություն</label><br>
-						<textarea id="message" name="msg" rows="6" placeholder="Ունե՞ք հարցեր" class="w-100" required></textarea>
-					</div>
-					<div class="text-end">
-						<button class="msg-btn" type="submit">Դիմել</button>
-					</div>
-				</form>
+			<div class="col-md-6">
+				<iframe style="width: 100%; height: 300px;" id="gmap_canvas" src="https://maps.google.com/maps?q=%D5%80%D5%A1%D5%B5%D6%84%D5%AB%20%D5%80%D6%80%D5%A1%D5%BA%D5%A1%D6%80%D5%A1%D5%AF%20/%20Hayk%20Square&t=&z=17&ie=UTF8&iwloc=&output=embed&language=hy" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
 			</div>
 		</div>
-		<hr>
-		<div><i class="fi fi-rr-copyright"></i> 2022 <span class="color-orange">My</span>F<span class="color-green">oo</span>d. All rights reserved.</div>
 	</div>
+	<div class="rights">
+		<div class="container">
+			<i class="fi fi-rr-copyright"></i> 2022 <span class="color-orange">My</span>F<span class="color-green">oo</span>d. All rights reserved.
+		</div>
 </footer>

@@ -92,6 +92,10 @@ nav .big-size {
     .navbar-nav .dropdown-menu {
         position: relative !important;
     }
+
+    footer {
+        text-align: center;
+    }
 }
 
 
@@ -111,114 +115,58 @@ nav .big-size {
 footer {
     position: relative;
     bottom: 0;
-    min-height: 500px;
-    background: white;
-}
-
-footer .content {
-    flex-wrap: wrap;
-}
-
-footer .content .box {
-    display: flex;
-    flex-direction: column;
-    margin: 0 auto;
-    padding: 40px 0;
-}
-
-footer .content:first-child {
-    margin-left: unset;
-}
-
-footer .content:last-child {
-    margin-right: unset;
-}
-
-footer .content span {
-    font-size: 17px;
-    line-height: 40px;
-}
-
-footer .content .box a {
-    text-decoration: none;
-    font-size: 17px;
-    line-height: 40px;
-    color: black;
-    transition-duration: 0.5s;
-}
-
-footer h2.section {
-    color: var(--orange);
-    border-bottom: 2px solid var(--orange);
-}
-
-div.soc a {
-    font-size: 25px !important;
-    color: var(--orange) !important;
-}
-
-button.msg-btn {
-    width: 100px;
-    background: var(--orange);
-    height: 50px;
+    min-height: 450px;
+    background: var(--green);
+    padding-top: 30px;
     color: white;
-    border: none;
-    transition-duration: 0.2s;
+}
+
+footer a {
+    color: white;
+    text-decoration: none;
+}
+
+footer h2 {
+    border-bottom: 2px solid white;
 }
 
 footer hr {
-    height: 5px;
-    border: 0;
-    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgb(0, 255, 8), rgba(0, 0, 0, 0));
+    color: white;
+    border-bottom: 1px solid white;
 }
 
-@media only screen and (max-width: 1000px) {
-    footer .container .content {
-        flex-wrap: wrap !important;
-    }
-
-    footer .container div:last-child {
-        padding-bottom: 20px;
-        text-align: center;
-    }
-
-    footer .content div:last-child {
-        min-width: 60vw;
-        text-align: left;
-    }
-
-    footer .undis {
-        display: block !important;
-    }
-
-    footer .undis div:first-child {
-        margin-right: unset !important;
-    }
-
-    footer .undis div:last-child {
-        padding-bottom: unset;
-    }
-
-    footer .undis input {
-        width: 100%;
-    }
+footer .box {
+    display: flex;
+    flex-direction: column;
 }
 
+footer .rights {
+    background: var(--wheat);
+    color: black;
+    margin-top: 30px;
+    height: 60px;
+    padding: 20px;
+}
+
+footer .soc {
+    font-size: 30px;
+}
+
+footer .soc a {
+    transition-duration: 0.5s;
+}
 
 @media (hover: hover){
-    button.msg-btn:hover {
-        background: var(--green);
-    }
-
-    div.soc a:hover {
-        color: var(--green) !important;
-    }
-
-    footer .content .box a:hover {
-        color: var(--green);
-    }
-
     nav button.big-size:hover {
         border: 1px solid var(--green)!important;
+    }
+
+    footer a:hover {
+        font-weight: bold;
+        color: white;
+    }
+
+    footer .soc a:hover {
+        color: var(--orange);
     }
 }

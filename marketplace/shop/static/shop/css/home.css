@@ -8,6 +8,10 @@
 	background: var(--wheat);
 }
 
+.undis {
+	display: flex;
+}
+
 .main {
 	height: 400px;
 	position: relative;
@@ -143,6 +147,14 @@ a.button {
 
 	.products .content .title hr {
 		width: 0%;
+	}
+
+	.undis {
+		display: block !important;
+	}
+
+	.email-field:last-child {
+		margin-top: 10px;
 	}
 }
 
@@ -308,4 +320,104 @@ div.flex-center i {
 	padding: 40px;
 	width: 100%;
 	text-align: center;
+}
+
+
+section.email {
+	padding: 30px 0;
+	background-color: #00cc00a6;
+	color: white;
+}
+
+.email .content {
+	text-align: center;
+	height: 100%;
+}
+
+.email .content .title {
+	font-size: 24px;
+	font-weight: bold;
+}
+
+.email-field input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: white;
+  opacity: 1; /* Firefox */
+}
+
+.email-field textarea::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+	color: white;
+  	opacity: 1; /* Firefox */
+}
+
+.email-field input:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: white;
+}
+
+.email-field textarea:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: white;
+}
+
+.email-field input::-ms-input-placeholder { /* Microsoft Edge */
+  color: white;
+}
+
+.email-field textarea::-ms-input-placeholder { /* Microsoft Edge */
+  color: white;
+}
+
+.email-field {
+	width: 100%;
+}
+
+.email-field label {
+	font-weight: bold;
+}
+
+.email-field:first-child {
+	margin-right: 10px;
+	border-radius: 0;
+}
+
+.email-field input {
+	width: 100%;
+	background: #59de59;
+	border: none;
+	color: white;
+	border-bottom: 2px solid white;
+}
+
+.email-field input:focus {
+	background: #59de59;
+	border: none;
+	color: white;
+	border-bottom: 2px solid white;
+	box-shadow: none;
+	outline: none;
+}
+
+.email-field textarea {
+	background: #59de59;
+	border: none;
+	color: white;
+	border-bottom: 2px solid white;
+	border-right: 1px solid white;
+	border-radius: 0;
+	resize: none;
+}
+
+.email-field textarea:focus {
+	background: #59de59;
+	border: none;
+	color: white;
+	border-bottom: 2px solid white;
+	border-right: 1px solid white;
+	box-shadow: none;
+	outline: none;
+}
+
+.msg-btn {
+	background: var(--green);
+	padding: 10px 15px;
+	color: white;
+	border: none;
 }

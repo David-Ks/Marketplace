@@ -85,7 +85,7 @@ class DelivaryAdminView(View):
             elif request.POST.get('action') == 'delete_products':
                 cleanProductModel()
             if status:
-                messages.error("Error with HaySel requests!")
+                messages.error(request, "Error with HaySel requests!")
             return redirect('delivery')
 
         id = request.POST.get('id')
