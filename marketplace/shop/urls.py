@@ -9,6 +9,7 @@ urlpatterns = [
     path('busket/', BusketView.as_view(), name='busket'),
     path('saves/', SavesView.as_view(), name='saves'),
     path('checkout/', CheckOutView.as_view(), name='checkout'),
+    path('info/', InfoView.as_view(), name='info'),
 
     path('error/', HomeView.as_view(), name='error'),  # WE NEED ERROR PAGE
 ]

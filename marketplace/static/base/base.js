@@ -17,6 +17,7 @@ $('nav.navbar').ready(() => {
 window.addEventListener('load', (el) => {
 	let toggleBtn = $('nav .product-btn');
 
+	$('div#for-map').append(`<iframe style="width: 100%; height: 300px;" id="gmap_canvas" src="https://maps.google.com/maps?q=%D5%80%D5%A1%D5%B5%D6%84%D5%AB%20%D5%80%D6%80%D5%A1%D5%BA%D5%A1%D6%80%D5%A1%D5%AF%20/%20Hayk%20Square&t=&z=17&ie=UTF8&iwloc=&output=embed&language=hy" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>`);
 
 	if(window.screen.width > 780){
 		toggleBtn.each(function() {

@@ -274,6 +274,9 @@ div.flex-center i {
 	color: var(--orange);
 }
 
+.card {
+	padding: 15px !important;
+}
 
 @media (hover: hover){
 	button.buy-btn:hover {
@@ -393,6 +396,10 @@ section.email {
 	border-bottom: 2px solid white;
 	box-shadow: none;
 	outline: none;
+}
+
+input:-internal-autofill-selected {
+	background-color: #59de59;
 }
 
 .email-field textarea {

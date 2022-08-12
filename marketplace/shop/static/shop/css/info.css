@@ -1,0 +1,30 @@
+section.info {
+	margin-top: 67.44px;
+	padding: 70px 0;
+}
+
+.info .title {
+	font-size: 24px;
+	color: var(--green);
+	border-bottom: 2px solid var(--green);
+	margin-bottom: 30px;
+}
+
+.info .box {
+	padding: 30px;
+	background: white;
+}
+
+button.accordion-button {
+	outline: none;
+}
+
+button.accordion-button:focus {
+	outline: none !important;
+	box-shadow: none;
+}
+
+.accordion-button:not(.collapsed) {
+	color: white !important;
+	background: #59de59 !important;
+}

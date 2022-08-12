@@ -198,3 +198,7 @@ class SavesView(TimeToUpdateModelsData, ListView):
         cards = cards.get_saves()
 
         return Product.objects.filter(barcode__in=cards)
+
+
+class InfoView(TemplateView):
+    template_name = 'shop/info.html'

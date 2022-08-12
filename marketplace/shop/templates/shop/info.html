@@ -1,0 +1,144 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'shop/css/info.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="info bg-wheat" style="padding: 35px 0 35px 0;">
+    <div class="container">
+        <div class="box shadow-sm">
+            <div class="title">
+                Օգնության կենտրոն
+            </div>
+            <div class="content">
+                <div class="accordion" id="info">
+                    <div class="accordion-item" id="inf1">
+                        <h2 class="accordion-header" id="1">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#info1" aria-expanded="false"
+                                    aria-controls="info1">
+                                1. Առաքում և վճարում
+                            </button>
+                        </h2>
+                        <div id="info1" class="accordion-collapse collapse"
+                             aria-labelledby="1">
+                            <div class="accordion-body">
+                                Պատվերներն ընդունվում են առցանց MyFood.com կայքի միջոցով:<br>
+                                MyFood.com կայքում Դուք ընտրում եք Ձեր նախընտրած ապրանքը, նշում քանակը, ապա տեղափոխվոիմ վճարման էջ։ Այնտեղ նշում հասցեն, ուր պետք է առաքվի այն, հեռախոսահամարը, ինչպես նաև տալիս հավելյալ տեղեկություններ ըստ անհրաժեշտության: Ունենալով Ձեր ֆիքսված բջջային հեռախոսահամարները` մեր առաքիչը կարող է կապ հաստատել Ձեզ հետ և ճշտումներ կատարել: Անհրաժեշտության դեպքում դուք կարող եք հավելյալ ինֆորմացիա ստանալ առցանց կատարված պատվերի մասին:
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item" id="inf2">
+                        <h2 class="accordion-header" id="2">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#info2" aria-expanded="false"
+                                    aria-controls="info2">
+                                2. Պատվերի ընդունումը, կարգավիճակը և պատմությունը
+                            </button>
+                        </h2>
+                        <div id="info2" class="accordion-collapse collapse"
+                             aria-labelledby="2">
+                            <div class="accordion-body">
+                                Պատվերը համարվում է ընդունված միային վճարմուից հետո։ <br>
+                                Եթե դուք գրանցված եք MyFood.com կայքում, ապա հնարավորություն ունեք տեսնել պատվերի կարգավիճակը Ձեր անձնական էջում։ Հակառակ դեպքում պատվերի մասին ինֆորմացիան կնշվի MyFood.com կայքի գլխավոր էջում։ <br>
+                                Պատվերների պատմությունը նշվում է միայն անձնական էջում։
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item" id="inf3">
+                        <h2 class="accordion-header" id="3">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#info3" aria-expanded="false"
+                                    aria-controls="info3">
+                                3. Առաքման կարգ
+                            </button>
+                        </h2>
+                        <div id="info3" class="accordion-collapse collapse"
+                             aria-labelledby="3">
+                            <div class="accordion-body">
+                                Ընդունված պատվերը պատրաստվում է, ստուգվում, այնուհետև առաքվում ձեր նշած հասցեով։
+                                Առաքման ժամկետը պարբերաբար փոփոխվում է կախված պատվերների քանակից և այլ պայմաններից:
+                                Առաքումը կատարվում է միայն Վանաձոր քաղաքում։ Մինչև 10000 դր գնումների դեպքում առաքման արժեքը 500 դր է, իսկ 10.000 դրամ և ավելի գնումների դեպքում առաքումը կլինի անվճար:
+                                Անհրաժեշտության դեպքում մեր առաքիչը կարող է կապ հաստատել Ձեզ հետ և ճշտումներ կատարել։
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item" id="inf4">
+                        <h2 class="accordion-header" id="4">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#info4" aria-expanded="false"
+                                    aria-controls="info4">
+                                4. Վճարման կարգ
+                            </button>
+                        </h2>
+                        <div id="info4" class="accordion-collapse collapse"
+                             aria-labelledby="4">
+                            <div class="accordion-body">
+                                MyFood.com-ում պատվերի համար վճարումն իրականացվում է միայն Online տարբերակով:
+                                Մեր կայքում online վճարումներն իրականացվում են Arca, Master, Visa, IDram, Telcell վճարային համակարգերի միջոցով: Եթե արդեն գրանցված եք այդ համակարգերում, ապա համապատասխան վճարային համակարգը ընտրելուց և պատվերը հաստատելուց հետո կհայտնվեք տվյալ վճարային համակարգի կայքում, որտեղ անհրաժեշտ է մուտքագրել այդ համակարգում Ձեր օգտանունն ու գաղտնաբառը և կատարել վճարումը:
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item" id="inf5">
+                        <h2 class="accordion-header" id="5">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#info5" aria-expanded="false"
+                                    aria-controls="info5">
+                                5. Պատվիրված ապրանքի վերադարձ կամ փոխանակում
+                            </button>
+                        </h2>
+                        <div id="info5" class="accordion-collapse collapse"
+                             aria-labelledby="5">
+                            <div class="accordion-body">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item" id="inf6">
+                        <h2 class="accordion-header" id="6">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#info6" aria-expanded="false"
+                                    aria-controls="info6">
+                                6. Էլեկտրոնային նամակներ
+                            </button>
+                        </h2>
+                        <div id="info6" class="accordion-collapse collapse"
+                             aria-labelledby="6">
+                            <div class="accordion-body">
+                                Մենք Ձեզ հետ հաղորդակցվում ենք` էլեկտրոնային նամակներ ուղարկելով: Փոխադարձ գործարքները պատշաճ ձևակերպելու նպատակով Դուք Ձեր համաձայնությունն եք տալիս` ստանալու մեր էլեկտրոնային հաղորդակցությունը: Դուք կարող եք մեզ դիմել էլեկտրոնային նամակներ ուղարկելով, կամ մեր կայքի գլխավոր էջում համապատասխան դաշտերը լրացնելով։
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item" id="inf7">
+                        <h2 class="accordion-header" id="7">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#info7" aria-expanded="false"
+                                    aria-controls="info7">
+                                7. Կայքի պատասխանատվությունը
+                            </button>
+                        </h2>
+                        <div id="info7" class="accordion-collapse collapse"
+                             aria-labelledby="7">
+                            <div class="accordion-body">
+                                Ընկերությունն ազատվում է պատասխանատվությունից իր ստանձնած պարտավորությունները չկատարելու կամ հետաձգված կատարելու համար, եթե դա պայմանավորված է մեր վերահսկողությունից դուրս գտնվող պատճառներով:
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript" src="{% static 'shop/js/info.js' %}"></script>
+{% endblock %}

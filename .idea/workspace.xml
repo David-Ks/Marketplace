@@ -3,11 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="dce0d783-c1fc-4ebd-a36e-de363c7f3e9d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/marketplace/marketplace/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/marketplace/marketplace/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/marketplace/shop/static/shop/css/home.css" beforeDir="false" afterPath="$PROJECT_DIR$/marketplace/shop/static/shop/css/home.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/marketplace/shop/templates/shop/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/marketplace/shop/templates/shop/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/marketplace/static/base/base.css" beforeDir="false" afterPath="$PROJECT_DIR$/marketplace/static/base/base.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/marketplace/shop/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/marketplace/shop/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/marketplace/shop/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/marketplace/shop/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/marketplace/static/base/base.js" beforeDir="false" afterPath="$PROJECT_DIR$/marketplace/static/base/base.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/marketplace/templates/layouts/inc/footer.html" beforeDir="false" afterPath="$PROJECT_DIR$/marketplace/templates/layouts/inc/footer.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/marketplace/user/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/marketplace/user/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
