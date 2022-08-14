@@ -1,14 +1,15 @@
-from django.contrib import messages
-from django.http import JsonResponse
-from django.shortcuts import render, redirect
+from django.http import JsonResponse, HttpResponse
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import View, ListView, TemplateView
 
-
+from marketplace import settings
 from user.models import Review
 from .Services.cart import UserCart, UserSavedCard
 from .Services.checkout import CheckOut
-from .Services.haysell import ProductsModelFiller, TimeToUpdateModelsData
+from .Services.haysell import TimeToUpdateModelsData
 from .Services.client import send_msg_AdminMail
+from .Services.payment import Telcell, IDram
+from .Services.payment.encode import encodeToBase64
 from .forms import CheckOutForm
 from .models import Product
 from .models import CheckOut as CheckOutModel
@@ -155,20 +156,17 @@ class CheckOutView(View):
 
     def post(self, request):
         form = CheckOutForm(request.POST)
+        response = redirect('pay')
         if form.is_valid():
+            print("mb")
             model = form.save()
             checkout = CheckOut(request, model)
             save = checkout.save()
             if save:
-                response = redirect('profile')
                 response.delete_cookie('cart')
-            if request.user.is_authenticated:
                 return response
 
-            response = redirect('home')
-            response.delete_cookie('cart')
-            return response
-        return JsonResponse({'status': 'Ok'})
+        return redirect('home')  # Return some error!!!
 
     def get_context_data(self, *args, **kwargs):
         barCodes = self.request.GET.getlist('barcode')
@@ -202,3 +200,34 @@ class SavesView(TimeToUpdateModelsData, ListView):
 
 class InfoView(TemplateView):
     template_name = 'shop/info.html'
+
+
+class PayView(TemplateView):
+    template_name = 'shop/pay.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(PayView, self).get_context_data(**kwargs)
+        cartId = self.request.session.get('cartId')
+
+        context['cart'] = get_object_or_404(CheckOutModel, id=cartId)
+        context['payMethod'] = self.request.session.get('pay_method')
+
+        if context['payMethod'] == 'Telcell':
+            context['issuer'] = settings.ISSUER
+            context['product64'] = encodeToBase64("Order:" + str(cartId))
+            context['issuer_id'] = encodeToBase64(cartId)
+            context['secure'] = Telcell.get_secure_code(context)
+        elif context['payMethod'] == 'IDram':
+            context['account'] = settings.IDRAM_ACCOUNT
+            context['description'] = "Invoice:" + str(cartId)
+            context['bill_no'] = str(cartId)
+
+        return context
+
+
+class IdramPayView(View):
+    def get(self, request):
+        checkIDrma = IDram.payment(request)
+        if checkIDrma.is_valid():
+            return HttpResponse('OK')
+        return HttpResponse('NOT KO')

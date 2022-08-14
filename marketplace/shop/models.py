@@ -57,4 +57,5 @@ class CheckOut(models.Model):
     items = models.ManyToManyField(Item, blank=True, null=True)
     total = models.PositiveIntegerField(blank=True, null=True)
     status = models.CharField(max_length=255, blank=False)
+    pay_method = models.CharField(max_length=255, blank=True, null=True)
     is_paied = models.BooleanField(default=False)

@@ -68,7 +68,7 @@
                             <label for="phone" class="form-label">Ստացողի Հեռ․համար*</label>
                             <div class="input-group has-validation">
                                 <span class="input-group-text phone">+374</span>
-                                <input type="tel" class="form-control" name="phone" id="phone" placeholder="99123456" required>
+                                <input type="tel" class="form-control" maxlength="9" name="phone" id="phone" placeholder="99123456" required>
                             </div>
                         </div>
 
@@ -119,36 +119,19 @@
 
                     <div class="my-3">
                         <div class="form-check">
-                            <input id="credit" name="paymentMethod" type="radio" class="form-check-input" checked=""
-                                   required="" disabled>
-                            <label class="form-check-label" for="credit">IDram</label>
+                            <input id="idram" name="pay_method" value="IDram" type="radio" class="form-check-input" checked=""
+                                   required="">
+                            <label class="form-check-label" for="idram">IDram</label>
                         </div>
                         <div class="form-check">
-                            <input id="debit" name="paymentMethod" type="radio" class="form-check-input"
-                                   required="" disabled>
-                            <label class="form-check-label" for="debit">ArCa / VisaCard / MasterCard</label>
+                            <input id="arca" name="pay_method" value="ArCa" type="radio" class="form-check-input"
+                                   required="">
+                            <label class="form-check-label" for="arca">ArCa / VisaCard / MasterCard</label>
                         </div>
                         <div class="form-check">
-                            <input id="paypal" name="paymentMethod" type="radio" class="form-check-input"
-                                   required="" disabled>
-                            <label class="form-check-label" for="paypal">Telcell</label>
-                        </div>
-                    </div>
-
-                    <div class="row gy-3">
-                        <div class="col-md-6">
-                            <label for="cc-name" class="form-label">Քարտի համար</label>
-                            <input type="text" name="card-number" class="form-control" id="cc-name" placeholder="" required=""disabled>
-                        </div>
-
-                        <div class="col-md-3">
-                            <label for="cc-expiration" class="form-label">Սեփականատեր</label>
-                            <input type="text" name="cc-expiration" class="form-control" id="cc-expiration" placeholder="" required="" disabled>
-                        </div>
-
-                        <div class="col-md-3">
-                            <label for="cc-cvv" class="form-label">Ուժի մեջ է մինչև</label>
-                            <input type="text" name="cc-cvv" class="form-control" id="cc-cvv" placeholder="" required="" disabled>
+                            <input id="telcell" name="pay_method" value="Telcell" type="radio" class="form-check-input"
+                                   required="">
+                            <label class="form-check-label" for="telcell">Telcell</label>
                         </div>
                     </div>
 

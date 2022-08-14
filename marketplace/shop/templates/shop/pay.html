@@ -1,0 +1,49 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'shop/css/pay.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="payment bg-wheat">
+	<div class="container">
+		<div class="box col-sm-4 checkout shadow-sm">
+			<h2 class="text-center"><span class="color-orange">My</span>F<span class="color-green">oo</span>d</h2>
+			<p><strong>Պատվեր`</strong> #{{cart.id}}</p>
+			<p><strong>Հեռ․համար՝</strong> {{cart.phone}}</p>
+			<p><strong>Ստեղծվել է՝</strong> {{cart.created_at}}</p>
+			<p><strong>Ընդհանուր՝</strong> {{cart.total}}.00</p>
+			<p><strong>Վճարման եղանակը՝ {{cart.pay_method}}</strong></p>
+		</div>
+		<div class="box col-sm-4 pay shadow-sm">
+			{% if cart.pay_method == 'Telcell' %}
+			<form target="_blank" action="https://telcellmoney.am/invoices" method="POST">
+			    <input type="hidden" name="issuer" value="{{issuer}}">
+			    <input type="hidden" name="action" value="PostInvoice">
+			    <input type="hidden" name="currency" value="֏">
+			    <input type="hidden" name="price" value="{{cart.total}}.00">
+			    <input type="hidden" name="product" value="{{product64}}">
+			    <input type="hidden" name="issuer_id" value="{{issuer_id}}">
+			    <input type="hidden" name="valid_days" value="1">
+			    <input type="hidden" name="lang" value="ru">
+			    <input type="hidden" name="security_code" value="{{secure}}">
+			    <input type="submit" class="do-pay col-12" value="Վճարել">
+			</form>
+			{% elif cart.pay_method == 'IDram' %}
+			<form action="https://money.idram.am/payment.aspx" method="POST" target="_blank">
+	            <input type="hidden" name="EDP_LANGUAGE" value="AM">
+	            <input type="hidden" name="EDP_REC_ACCOUNT" value="{{account}}">
+	            <input type="hidden" name="EDP_DESCRIPTION" value="{{description}}">
+	            <input type="hidden" name="EDP_AMOUNT" value="{{cart.total}}.00">
+	            <input type="hidden" name="EDP_BILL_NO" value="{{bill_no}}">
+			    <input type="submit" class="do-pay col-12" value="Վճարել">
+	        </form>
+			{% endif %}
+		</div>
+	</div>
+</section>
+{% endblock %}
+
+{% block js %}
+{% endblock %}

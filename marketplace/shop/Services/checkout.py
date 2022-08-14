@@ -30,10 +30,15 @@ class CheckOut:
         if self.total < 10000:
             self.total += 500
         self.model.total = self.total
+
         if self.request.user.is_authenticated:
             self.model.user = self.request.user
         else:
             self.request.session['checkout_id'] = self.model.id
+
+        self.request.session['cartId'] = self.model.id
+        self.request.session['payMethod'] = self.request.POST.get('pay_method')
+
         self.model.status = '1'
         self.model.save()
         return True
