@@ -86,7 +86,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'myfood',
         'USER': 'postgres',
-        'PASSWORD': '12lqsym',
+        'PASSWORD': '',
         'HOST': 'localhost',
         'PORT': 5432
     }
@@ -145,8 +145,8 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'davidkostandyan71@gmail.com'
-EMAIL_HOST_PASSWORD = 'ipzkycxppbkopzrv'
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 
@@ -182,9 +182,9 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # HaySell Settings
-HAYSELL_URL = "https://prod.haysell.com/api/get_products.php"
-TOKEN = "$2y$103zSCaL307j8pFBd7hXlwuwMG8XBBwvY56aY4Pxc11SLOOQrsBaEu"
-PROFILE_ID = 2909
+HAYSELL_URL = ""
+TOKEN = ""
+PROFILE_ID = 
 DATAS_REFRESH_TIME = 60
 
 # PayMethod Settings
